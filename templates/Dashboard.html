@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MukoIOT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/metrics.css">
+    <link rel="stylesheet" href="/static/css/control-panel.css">
+    <link rel="stylesheet" href="/static/css/Automation.css">
+    <link rel="stylesheet" href="/static/css/modals.css">
+    <link rel="stylesheet" href="/static/css/devices-list.css">
+    <link rel="stylesheet" href="/static/css/sidebar.css">
+    <link rel="stylesheet" href="/static/css/addDevices.css">
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+    <!-- Toggle Button -->
+    <button class="sidebar-toggle" aria-label="Toggle Sidebar">
+        <i data-feather="menu"></i>
+    </button>
+
+    <div class="sidebar-top">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="/api/placeholder/40/40" alt="Dashboard Logo">
+            <span>Dashboard</span>
+        </div>
+
+        <!-- User Welcome Section -->
+        <div class="user-welcome">
+            <div class="user-avatar">JD</div>
+            <div class="user-info">
+                <h3>Mukoma</h3>
+                <p>Admin</p>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav>
+            <div class="nav-section">
+                <h2 class="nav-section-title">Main Menu</h2>
+                <a href="#" class="nav-item active">
+                    <i data-feather="home"></i>
+                    <span>Dashboard</span>
+                </a>
+               
+                <a href="#" class="nav-item">
+                    <i data-feather="folder"></i>
+                    <span>Projects</span>
+                </a>
+               
+            </div>
+
+            <div class="nav-section">
+                <h2 class="nav-section-title">Management</h2>
+                <a href="#" class="nav-item">
+                    <i data-feather="bar-chart-2"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-feather="file-text"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-feather="settings"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="sidebar-bottom">
+        <div class="nav-section">
+            <a href="#" class="nav-item">
+                <i data-feather="help-circle"></i>
+                <span>Help & Support</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i data-feather="log-out"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+</aside>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">Dashboard</div>
+            <div class="timestamp">October 3, 2024</div>
+        </div>
+
+        <div class="metrics-grid">
+            <!-- Metric Cards -->
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i data-feather="thermometer"></i>
+                </div>
+                <div class="metric-value">23°C</div>
+                <div class="metric-label">Temperature</div>
+                <div class="metric-sublabel">Room 1</div>
+                <div class="device-count">2 Devices</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i data-feather="droplet"></i>
+                </div>
+                <div class="metric-value">65%</div>
+                <div class="metric-label">Humidity</div>
+                <div class="metric-sublabel">Room 1</div>
+                <div class="device-count">3 Devices</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i data-feather="sun"></i>
+                </div>
+                <div class="metric-value">450</div>
+                <div class="metric-label">Light Intensity</div>
+                <div class="metric-sublabel">Outdoor</div>
+                <div class="device-count">4 Devices</div>
+            </div>
+
+            <!-- Add Device Card -->
+            <div class="add-device-card" onclick="openAddDeviceModal()">
+                <div class="add-device-icon">
+                    <i data-feather="plus"></i>
+                </div>
+                <div class="add-device-text">Add New Device</div>
+            </div>
+        </div>
+      <!-- Control Panel Section -->
+<div class="control-panel">
+    <div class="header">
+        <h2 class="page-title">Device Control Panel</h2>
+        <span class="timestamp">Last updated: 2024-10-03 12:45 PM</span>
+    </div>
+
+    <div class="control-grid">
+        <div class="control-card">
+            <div class="control-header">
+                <h3>Irrigation System</h3>
+                <div class="status-indicator success"></div>
+            </div>
+            <div class="control-body">
+                <label for="irrigation-toggle" class="control-label">Activate</label>
+                <input type="checkbox" id="irrigation-toggle" class="control-toggle" />
+            </div>
+        </div>
+
+        <div class="control-card">
+            <div class="control-header">
+                <h3>Ventilation System</h3>
+                <div class="status-indicator warning"></div>
+            </div>
+            <div class="control-body">
+                <label for="ventilation-toggle" class="control-label">Activate</label>
+                <input type="checkbox" id="ventilation-toggle" class="control-toggle" />
+            </div>
+        </div>
+
+        <div class="control-card">
+            <div class="control-header">
+                <h3>Temperature Control</h3>
+                <div class="status-indicator danger"></div>
+            </div>
+            <div class="control-body">
+                <label for="temperature-slider" class="control-label">Adjust Temperature</label>
+                <input type="range" id="temperature-slider" min="15" max="35" value="25" class="control-slider" />
+                <span class="slider-value">25°C</span>
+            </div>
+        </div>
+    </div>
+<!-- Task Scheduler Section -->
+<section class="automation-section task-scheduler" aria-labelledby="task-scheduler-title">
+    <div class="automation-header">
+        <h2 class="automation-title" id="task-scheduler-title">
+            <i data-feather="calendar" aria-hidden="true"></i>
+            Automated Task Scheduling
+            <span class="badge" id="tasksCount">2 Active</span>
+        </h2>
+        <button 
+            class="automation-btn btn-primary" 
+            onclick="showTaskForm()" 
+            aria-expanded="false"
+            aria-controls="taskForm">
+            <i data-feather="plus" aria-hidden="true"></i>
+            <span>New Task</span>
+        </button>
+    </div>
+
+    <div class="automation-list" role="list">
+        <!-- Task Item 1 -->
+        <div class="automation-item" role="listitem">
+            <div class="automation-item-content">
+                <div class="automation-item-title">
+                    <i data-feather="droplet" aria-hidden="true"></i>
+                    Daily Irrigation
+                    <span class="status-badge active">Active</span>
+                </div>
+                <div class="automation-item-details">
+                    <div class="detail-item">
+                        <i data-feather="clock" aria-hidden="true"></i>
+                        Trigger: 7:00 AM
+                    </div>
+                    <div class="detail-item">
+                        <i data-feather="activity" aria-hidden="true"></i>
+                        Condition: Soil moisture below 40%
+                    </div>
+                    <div class="detail-item last-run">
+                        <i data-feather="check-circle" aria-hidden="true"></i>
+                        Last run: 2 hours ago
+                    </div>
+                </div>
+            </div>
+            <div class="automation-item-actions">
+                <button class="automation-btn btn-secondary" aria-label="Edit Daily Irrigation task">
+                    <i data-feather="edit-2" aria-hidden="true"></i>
+                    <span>Edit</span>
+                </button>
+                <button class="automation-btn btn-icon btn-secondary" aria-label="Toggle task active state">
+                    <i data-feather="toggle-right" aria-hidden="true"></i>
+                </button>
+                <button 
+                    class="automation-btn btn-danger" 
+                    aria-label="Delete Daily Irrigation task"
+                    data-confirm="Are you sure you want to delete this task?">
+                    <i data-feather="trash-2" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New/Edit Task Form -->
+    <form 
+        class="automation-form" 
+        id="taskForm" 
+        hidden
+        aria-labelledby="formTitle">
+        <div class="form-header">
+            <h3 id="formTitle">Create New Task</h3>
+            <button 
+                type="button" 
+                class="btn-close" 
+                onclick="hideTaskForm()" 
+                aria-label="Close form">
+                <i data-feather="x" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="taskName">
+                <i data-feather="tag" aria-hidden="true"></i>
+                Task Name
+                <span class="required" aria-hidden="true">*</span>
+            </label>
+            <input 
+                type="text" 
+                id="taskName"
+                class="form-input" 
+                placeholder="Enter task name"
+                required
+                minlength="3"
+                maxlength="50">
+            <div class="form-hint">Choose a descriptive name for your task</div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label class="form-label" for="scheduleTime">
+                    <i data-feather="clock" aria-hidden="true"></i>
+                    Schedule Time
+                    <span class="required" aria-hidden="true">*</span>
+                </label>
+                <input 
+                    type="time" 
+                    id="scheduleTime"
+                    class="form-input"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="repeatInterval">
+                    <i data-feather="repeat" aria-hidden="true"></i>
+                    Repeat Interval
+                </label>
+                <select id="repeatInterval" class="form-select">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="custom">Custom</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="triggerCondition">
+                <i data-feather="git-branch" aria-hidden="true"></i>
+                Trigger Condition
+            </label>
+            <select id="triggerCondition" class="form-select">
+                <option value="">Select condition</option>
+                <option value="soil-moisture">Soil Moisture</option>
+                <option value="temperature">Temperature</option>
+                <option value="humidity">Humidity</option>
+                <option value="light">Light Level</option>
+            </select>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="automation-btn btn-primary">
+                <i data-feather="save" aria-hidden="true"></i>
+                <span>Save Task</span>
+            </button>
+            <button 
+                type="button" 
+                class="automation-btn btn-secondary" 
+                onclick="hideTaskForm()">
+                <i data-feather="x" aria-hidden="true"></i>
+                <span>Cancel</span>
+            </button>
+        </div>
+    </form>
+</section>
+
+<!-- Threshold Alerts Section -->
+<section class="automation-section threshold-alerts" aria-labelledby="threshold-alerts-title">
+    <div class="automation-header">
+        <h2 class="automation-title" id="threshold-alerts-title">
+            <i data-feather="alert-circle" aria-hidden="true"></i>
+            Threshold Alerts
+            <span class="badge">3 Active</span>
+        </h2>
+        <button class="automation-btn btn-secondary">
+            <i data-feather="settings" aria-hidden="true"></i>
+            <span>Configure Notifications</span>
+        </button>
+    </div>
+
+    <div class="threshold-grid">
+        <!-- Temperature Threshold -->
+        <div class="threshold-card" data-type="temperature">
+            <div class="threshold-header">
+                <i data-feather="thermometer" aria-hidden="true"></i>
+                <span>Temperature</span>
+                <div class="threshold-status active" aria-label="Status: Active"></div>
+            </div>
+            <div class="threshold-value">
+                <div class="input-group">
+                    <label class="form-label" for="tempMax">Maximum</label>
+                    <div class="input-with-unit">
+                        <input 
+                            type="number" 
+                            id="tempMax"
+                            class="form-input" 
+                            placeholder="35"
+                            min="0"
+                            max="50"
+                            step="0.5">
+                        <span class="unit">°C</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="form-label" for="tempAction">Action</label>
+                    <select id="tempAction" class="form-select">
+                        <option value="alert">Send Alert</option>
+                        <option value="action">Trigger Action</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+            </div>
+            <div class="threshold-footer">
+                <span class="last-triggered">
+                    <i data-feather="clock" aria-hidden="true"></i>
+                    Last triggered: Never
+                </span>
+            </div>
+        </div>
+
+        <!-- Humidity Threshold -->
+        <div class="threshold-card" data-type="humidity">
+            <div class="threshold-header">
+                <i data-feather="droplet" aria-hidden="true"></i>
+                <span>Humidity</span>
+                <div class="threshold-status active" aria-label="Status: Active"></div>
+            </div>
+            <div class="threshold-value">
+                <div class="input-group">
+                    <label class="form-label" for="humidityMin">Minimum</label>
+                    <div class="input-with-unit">
+                        <input 
+                            type="number" 
+                            id="humidityMin"
+                            class="form-input" 
+                            placeholder="40"
+                            min="0"
+                            max="100"
+                            step="1">
+                        <span class="unit">%</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="form-label" for="humidityAction">Action</label>
+                    <select id="humidityAction" class="form-select">
+                        <option value="alert">Send Alert</option>
+                        <option value="action">Trigger Action</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+            </div>
+            <div class="threshold-footer">
+                <span class="last-triggered">
+                    <i data-feather="clock" aria-hidden="true"></i>
+                    Last triggered: 2 hours ago
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+     <div class="device-list-container">
+    <div class="device-list-header">
+        <h2 class="section-title">Connected Devices</h2>
+        <div class="list-actions">
+            <div class="search-box">
+                <i data-feather="search"></i>
+                <label>
+                    <input type="text" placeholder="Search devices..." class="search-input">
+                </label>
+            </div>
+            <button class="automation-btn btn-primary" onclick="openAddDeviceModal()">
+                <i data-feather="plus"></i>
+                Add Device
+            </button>
+        </div>
+    </div>
+
+    <div class="device-list-wrapper">
+        <table class="device-list">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="th-content">
+                            <span>Device Name</span>
+                            <i data-feather="chevron-down" class="sort-icon"></i>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="th-content">
+                            <span>Status</span>
+                            <i data-feather="chevron-down" class="sort-icon"></i>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="th-content">
+                            <span>Type</span>
+                            <i data-feather="chevron-down" class="sort-icon"></i>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="th-content">
+                            <span>Last Update</span>
+                            <i data-feather="chevron-down" class="sort-icon"></i>
+                        </div>
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="device-row">
+                    <td>
+                        <div class="device-name">
+                            <div class="device-icon">
+                                <i data-feather="thermometer"></i>
+                            </div>
+                            <div class="device-info">
+                                <span class="primary-text">Temperature Sensor 1</span>
+                                <span class="secondary-text">Room 1</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="status-badge status-active">
+                            <i data-feather="check-circle"></i>
+                            Active
+                        </div>
+                    </td>
+                    <td>Temperature</td>
+                    <td>
+                        <div class="last-update">
+                            <span class="update-time">2 mins ago</span>
+                            <span class="update-date">Oct 3, 2024</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="device-actions">
+                            <button class="action-btn" onclick="showDeviceDetails('Device 1')" title="View Details">
+                                <i data-feather="eye"></i>
+                            </button>
+                            <button class="action-btn" title="Edit Device">
+                                <i data-feather="edit-2"></i>
+                            </button>
+                            <button class="action-btn danger" title="Remove Device">
+                                <i data-feather="trash-2"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <!-- More device rows can be added dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="device-list-footer">
+        <div class="pagination">
+            <button class="pagination-btn" disabled>
+                <i data-feather="chevron-left"></i>
+            </button>
+            <div class="pagination-numbers">
+                <button class="pagination-number active">1</button>
+                <button class="pagination-number">2</button>
+                <button class="pagination-number">3</button>
+            </div>
+            <button class="pagination-btn">
+                <i data-feather="chevron-right"></i>
+            </button>
+        </div>
+        <div class="items-per-page">
+            <span>Show:</span>
+            <label>
+                <select class="form-select">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+            </label>
+            <span>items</span>
+        </div>
+    </div>
+</div>
+
+
+
+        <!-- Modal for Device Details -->
+<div id="deviceDetailsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeDeviceModal()">&times;</span>
+        <h2 id="deviceName"></h2>
+        <p><strong>Status:</strong> <span id="deviceStatus"></span></p>
+        <p><strong>Last Update:</strong> <span id="deviceLastUpdate"></span></p>
+        <button class="submit-button" onclick="performDeviceAction()">Take Action</button>
+    </div>
+</div>
+
+
+        <!-- Add Device Modal -->
+        <div class="modal" id="addDeviceModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add New Device</h3>
+                    <button class="close-button" onclick="closeAddDeviceModal()">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <form class="device-form" onsubmit="handleAddDevice(event)">
+                    <div id="toast" style="display:none; position: fixed; bottom: 20px; right: 20px; padding: 16px; background-color: var(--success-color); color: white; border-radius: 8px;">
+    Device added successfully!
+</div>
+                    <div class="form-group">
+                        <label class="form-label">Device Name</label>
+                        <label>
+                            <input type="text" class="form-input" placeholder="Enter device name" required>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Device Type</label>
+                        <label>
+                            <select class="form-input" required>
+                                <option value="">Select device type</option>
+                                <option value="soil">Soil Moisture Sensor</option>
+                                <option value="temp">Temperature Sensor</option>
+                                <option value="humidity">Humidity Sensor</option>
+                                <option value="ph">pH Sensor</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Location</label>
+                        <label>
+                            <input type="text" class="form-input" placeholder="Enter device location" required>
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-button">Add Device</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+
+        // Initialize Feather icons
+document.addEventListener('DOMContentLoaded', () => {
+    feather.replace();
+});
+
+//sidebar functionality 
+
+const sidebar = document.querySelector('.sidebar');
+const sidebarToggle = document.querySelector('.sidebar-toggle');
+const navItems = document.querySelectorAll('.nav-item');
+
+// Toggle sidebar collapse state
+sidebarToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+    // Update aria-expanded state
+    const isCollapsed = sidebar.classList.contains('collapsed');
+    sidebarToggle.setAttribute('aria-expanded', !isCollapsed);
+});
+
+// Handle mobile toggle
+function handleMobileToggle() {
+    if (window.innerWidth <= 768) {
+        sidebar.classList.add('mobile');
+        if (!sidebar.classList.contains('mobile-open')) {
+            sidebar.classList.add('collapsed');
+        }
+    } else {
+        sidebar.classList.remove('mobile');
+        sidebar.classList.remove('mobile-open');
+    }
+}
+
+// Listen for window resize
+window.addEventListener('resize', handleMobileToggle);
+
+// Initial check for mobile
+handleMobileToggle();
+
+// Handle mobile menu toggle
+document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+        if (sidebar.contains(e.target) || sidebarToggle.contains(e.target)) {
+            sidebar.classList.toggle('mobile-open');
+            sidebar.classList.toggle('collapsed');
+        } else if (sidebar.classList.contains('mobile-open')) {
+            sidebar.classList.remove('mobile-open');
+            sidebar.classList.add('collapsed');
+        }
+    }
+});
+
+// Handle active state for nav items
+navItems.forEach(item => {
+    item.addEventListener('click', () => {
+        // Remove active class from all items
+        navItems.forEach(nav => nav.classList.remove('active'));
+        // Add active class to clicked item
+        item.classList.add('active');
+    });
+});
+
+// Add hover effect for parent items when sidebar is collapsed
+const navSections = document.querySelectorAll('.nav-section');
+navSections.forEach(section => {
+    section.addEventListener('mouseenter', () => {
+        if (sidebar.classList.contains('collapsed')) {
+            sidebar.classList.add('temp-expand');
+        }
+    });
+
+    section.addEventListener('mouseleave', () => {
+        sidebar.classList.remove('temp-expand');
+    });
+});
+
+// Add keyboard navigation
+navItems.forEach(item => {
+    item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            item.click();
+        }
+    });
+});
+
+// end of sidebar functionality 
+
+// Search functionality
+const searchInput = document.querySelector('.search-input');
+searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const deviceRows = document.querySelectorAll('.device-row');
+
+    deviceRows.forEach(row => {
+        const deviceName = row.querySelector('.primary-text').textContent.toLowerCase();
+        const deviceLocation = row.querySelector('.secondary-text').textContent.toLowerCase();
+
+        if (deviceName.includes(searchTerm) || deviceLocation.includes(searchTerm)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+
+// Sort functionality
+document.querySelectorAll('.th-content').forEach(header => {
+    header.addEventListener('click', () => {
+        const sortIcon = header.querySelector('.sort-icon');
+        // Toggle sort direction
+        const isAscending = sortIcon.style.transform === '';
+        sortIcon.style.transform = isAscending ? 'rotate(180deg)' : '';
+
+        // Add sorting logic here
+    });
+});
+
+// Pagination
+document.querySelectorAll('.pagination-number').forEach(button => {
+    button.addEventListener('click', () => {
+        document.querySelector('.pagination-number.active').classList.remove('active');
+        button.classList.add('active');
+        // Add page change logic here
+    });
+});
+
+        // Data for Device Status
+
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Modal functions
+        function openAddDeviceModal() {
+            document.getElementById('addDeviceModal').classList.add('active');
+        }
+        function showDeviceDetails(deviceName) {
+    // Simulate getting device details from an API
+    const deviceData = {
+        'Device 1': { status: 'Active', lastUpdate: '2024-10-01' },
+        'Device 2': { status: 'Inactive', lastUpdate: '2024-09-30' },
+    };
+    const device = deviceData[deviceName];
+    document.getElementById('deviceName').textContent = deviceName;
+    document.getElementById('deviceStatus').textContent = device.status;
+    document.getElementById('deviceLastUpdate').textContent = device.lastUpdate;
+
+    // Open modal
+    document.getElementById('deviceDetailsModal').classList.add('active');
+}
+
+
+        function closeAddDeviceModal() {
+            document.getElementById('addDeviceModal').classList.remove('active');
+        }
+        function closeDeviceModal() {
+    document.getElementById('deviceDetailsModal').classList.remove('active');
+}
+// Form toggle functions
+function showTaskForm() {
+    const form = document.getElementById('taskForm');
+    form.style.display = 'grid';
+    form.scrollIntoView({ behavior: 'smooth' });
+}
+
+function hideTaskForm() {
+    document.getElementById('taskForm').style.display = 'none';
+}
+
+// Initialize Feather icons
+document.addEventListener('DOMContentLoaded', () => {
+    feather.replace();
+});
+
+function performDeviceAction() {
+    alert("Action performed on the device!");
+}
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar.classList.contains('collapsed')) {
+        sidebar.classList.remove('collapsed');
+        sidebar.style.width = '250px';
+    } else {
+        sidebar.classList.add('collapsed');
+        sidebar.style.width = '0';
+    }
+}
+
+        function handleAddDevice(event) {
+             event.preventDefault();
+    // Simulate device addition logic
+    setTimeout(() => {
+        document.getElementById('toast').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('toast').style.display = 'none';
+        }, 3000);  // Hide after 3 seconds
+        closeAddDeviceModal();
+    }, 1000);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('addDeviceModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeAddDeviceModal();
+            }
+        });
+    </script>
+</body>
+</html>
